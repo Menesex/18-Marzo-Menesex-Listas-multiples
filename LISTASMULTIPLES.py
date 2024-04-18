@@ -62,7 +62,19 @@ def fnt_consultar():
                 
         else:#Opción no válida
             input('Porfavor seleccione una opción válida.. <ENTER>')
-            
+
+def fnt_iniciarDatos():
+    global ls_identificacion,ls_experiencia,ls_profesion,ls_edad,ls_nombres,ls_correo,ls_contacto,ls_ciudad,ls_sexo
+    ls_identificacion = ['01','02','03','04','05']
+    ls_experiencia = [2,2,3,4,3]
+    ls_profesion = ['1','1','2','2','1']
+    ls_edad = [25,32,27,35,30]
+    ls_nombres = ['Juanito Perez','Antonio Jaramillo','Guillermo Hernandez','Sebastian Aguirre','Valentina Acevedo']
+    ls_correo = ['Juanito@gmail','Antonio@gmail','Guillermo@gmail','Sebastian@gmail','Valentina@gmail',]
+    ls_contacto = ['32138721','212321','331239','310342219','3138291287',]
+    ls_ciudad = ['Apartadó','Turbo','Carepa','Chigordó','Medellín',]
+    ls_sexo = ['Másculino','Másculino','Másculino','Másculino','Femenino']
+    input('Lista inicializada correctamente (= ')
 def fnt_selector(op):
     global sw
     if op == '0': #salir del programa
@@ -94,11 +106,13 @@ def fnt_selector(op):
             
     elif op == '2':
         fnt_consultar()
+    elif op == '3':
+        fnt_iniciarDatos()
     else:
         input('Porfavor ingrese una opción correcta.. <ENTER>')
            
 sw = True
 while sw == True:
     fnt_limpiar()
-    op = input('<<MENU PRINCIPAL>>\n[0]Salir\n[1]Regitrar candidatos\n[2]Consultar candidatos\n--> ')
+    op = input('<<MENU PRINCIPAL>>\n[0]Salir\n[1]Regitrar candidatos\n[2]Consultar candidatos\n[3]Rellenar listas con datos de prueba\n--> ')
     fnt_selector(op)
