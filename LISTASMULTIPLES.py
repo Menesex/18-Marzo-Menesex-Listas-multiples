@@ -38,7 +38,7 @@ def fnt_registrar(id,experiencia,profesion,edad,nombres,correo,contacto,ciudad,s
     #a. Edad 25-35
     #b. Profesión ING.SISTEMAS - ING INFORMATICO
     #c. Experiencia: 2 a 4 años
-    if id == '' or experiencia == '' or profesion == '' or edad == '' or nombres == '' or correo == '' or contacto == '' or ciudad or sexo == '':
+    if id == '' or experiencia == '' or profesion == '' or edad == '' or nombres == '' or correo == '' or contacto == '' or ciudad == '' or sexo == '':
         input('ERROR: Porfavor rellene la totalidad de los datos <ENTER>')
     else:
         ls_identificacion.append(id)
@@ -89,7 +89,7 @@ def fnt_selector(op):
             profesion = input('Profesión\n[1]ING. Sistemas\n[2]ING. Informático\n[3]Otro\n--> ')
             edad = int(input('Edad: '))
             
-            if((experiencia > 2 and experiencia < 4) and (profesion == '1' or profesion =='2') and (edad >= 25 and edad <=35)):
+            if((experiencia >= 2 and experiencia <= 4) and (profesion == '1' or profesion =='2') and (edad >= 25 and edad <=35)):
                 nombres = input('Nombres y apellidos completos: ')
                 correo = input('Correo: ')
                 contacto = input('Contacto: ')
