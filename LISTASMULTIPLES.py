@@ -9,30 +9,14 @@ c. Experiencia: 2 a 4 años
 2. Consultar candidatos: Mostrar todos los candidatos
 
 3. Información a capturar:
-ls_nombres
-ls_identificacion
-ls_correo
-ls_contacto
-ls_edad
-ls_experiencia
-ls_profesion
-ls_ciudad
-ls_sexo
+ls_identificacion, ls_experiencia, ls_profesion, ls_edad, ls_nombres, ls_correo, ls_contacto, ls_ciudad, ls_sexo
 '''
-ls_nombres = []
-ls_identificacion = []
-ls_correo = []
-ls_contacto = []
-ls_edad = []
-ls_experiencia = []
-ls_profesion = []
-ls_ciudad = []
-ls_sexo = []
-
+ls_identificacion,ls_experiencia,ls_profesion,ls_edad,ls_nombres,ls_correo,ls_contacto,ls_ciudad,ls_sexo = [],[],[],[],[],[],[],[],[]
 import os
 
 def fnt_limpiar():
     os.system('cls')
+    print('By: Menesex\nVersión 1.0\n')
 
 def fnt_registrar(id,experiencia,profesion,edad,nombres,correo,contacto,ciudad,sexo):
     #a. Edad 25-35
@@ -55,41 +39,49 @@ def fnt_registrar(id,experiencia,profesion,edad,nombres,correo,contacto,ciudad,s
 def fnt_consultar():
     fnt_limpiar()
     sw2 = True
-    while sw2 == True:
+    while sw2 == True: #Menú de búsqueda
         fnt_limpiar()
-        id = input('<<<CONSULT MENU>>>\n[0]Back to menu\n[1]All the data\n[2]For id\n--> ')
+        id = input('<<<MENÚ DE BÚSQUEDA>>>\n[0]Volver al menú principal\n[1]Todos los datos\n[2]Filtrar por id\n--> ')
         
-        if id == '0':
+        if id == '0': #salir
             sw2 = False
             
-        elif id == '1':
+        elif id == '1':#Mostar todos los datos
             for i in range(len(ls_identificacion)):
-                print(f'ID: {ls_identificacion[i]}\tAños de experiencia: {ls_experiencia[i]}\tProfesión: {ls_profesion[i]}\tEdad: {ls_edad[i]}\tNombres: {ls_nombres[i]}\tCorreo: {ls_correo[i]}\tContacto: {ls_contacto[i]}\tCiudad: {ls_ciudad[i]}\tSexo: {ls_sexo[i]}\n')
-            input('<ENTER>')
+                print(f'ID: {ls_identificacion[i]} | \tAños de experiencia: {ls_experiencia[i]} | \tProfesión: {ls_profesion[i]} | \tEdad: {ls_edad[i]} | \tNombres: {ls_nombres[i]} | \tCorreo: {ls_correo[i]} | \tContacto: {ls_contacto[i]} | \tCiudad: {ls_ciudad[i]} | \tSexo: {ls_sexo[i]} | \n')
+            input('\nFin de la busqueda.. <ENTER>')
                 
-        elif id == '2':
-            id = input('What id are you looking for: ')
-            indx = ls_identificacion.index(id)
-            print(f'ID: {ls_identificacion[indx]}\tAños de experiencia: {ls_experiencia[indx]}\tProfesión: {ls_profesion[indx]}\tEdad: {ls_edad[indx]}\tNombres: {ls_nombres[indx]}\tCorreo: {ls_correo[indx]}\tContacto: {ls_contacto[indx]}\tCiudad: {ls_ciudad[indx]}\tSexo: {ls_sexo[indx]}\n')
-            input('<ENTER>')
-    
-    
+        elif id == '2': #Mostrar los datos según id
+            id = input('ID a buscar: ')
+            if id in ls_identificacion:
+                indx = ls_identificacion.index(id)
+                print(f'ID: {ls_identificacion[indx]} | \tAños de experiencia: {ls_experiencia[indx]} | \tProfesión: {ls_profesion[indx]} | \tEdad: {ls_edad[indx]} | \tNombres: {ls_nombres[indx]} | \tCorreo: {ls_correo[indx]} | \tContacto: {ls_contacto[indx]} | \tCiudad: {ls_ciudad[indx]} | \tSexo: {ls_sexo[indx]} | \n')
+                input('<ENTER>')
+            else:
+                input('Identificación no regitrada.. <ENTER>')
+                
+        else:#Opción no válida
+            input('Porfavor seleccione una opción válida.. <ENTER>')
+            
 def fnt_selector(op):
     global sw
-    if op == '0':
+    if op == '0': #salir del programa
         sw = False
         
-    elif op == '1':
+    elif op == '1': #Registrar candidato - (ENTRADA DE DATOS)
         fnt_limpiar()
         id = input('Identificación: ')
-        if id in ls_identificacion:
+        
+        if id in ls_identificacion: #validar id (¿registrada?)
             input('<ERROR> Candidato ya registrado')
+            
         else:
+            #validar si cumple con los requisitos..
             experiencia = int(input('Años de experiencia: '))
             profesion = input('Profesión\n[1]ING. Sistemas\n[2]ING. Informático\n[3]Otro\n--> ')
             edad = int(input('Edad: '))
-            
             if((experiencia >= 2 and experiencia <= 4) and (profesion == '1' or profesion =='2') and (edad >= 25 and edad <=35)):
+                #continuar pidiendo datos para terminar el registro
                 nombres = input('Nombres y apellidos completos: ')
                 correo = input('Correo: ')
                 contacto = input('Contacto: ')
@@ -102,10 +94,11 @@ def fnt_selector(op):
             
     elif op == '2':
         fnt_consultar()
-        
-        
+    else:
+        input('Porfavor ingrese una opción correcta.. <ENTER>')
+           
 sw = True
 while sw == True:
     fnt_limpiar()
-    op = input('<<MENU PRINCIPAL>>\n[0]Salir\n[1]Regitrar candidatos\n[2]Consultar candidatos\n-->')
+    op = input('<<MENU PRINCIPAL>>\n[0]Salir\n[1]Regitrar candidatos\n[2]Consultar candidatos\n--> ')
     fnt_selector(op)
